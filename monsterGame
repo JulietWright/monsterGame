@@ -1,0 +1,1067 @@
+// Source File Header
+// final.cpp
+// Juliet Wright, CISP 360
+// 4/11/2021
+
+#include <iostream>
+#include <string>   //so we may work with strings and ask the user to input his/her name
+
+using namespace std;
+
+//Function Prototype
+void programGreeting ( );
+void gameDetail ( );
+// Specification C1 - Five Rooms
+void room1 ( );
+void room2 ( );
+void room3 ( );
+void room4 ( );
+void room5 ( );
+// Specification B2 - Add more rooms
+void room6 ( );
+void exitGame ( );
+//Specification A3 - Key Movement Discription (Lets the player know how to move throughout the game)
+void location ( );
+void location2 ( );
+// Specification C5 - Detailed Look  
+void room1D ( );
+void room2D ( );
+void room3D ( );
+void room4D ( );
+void room5D ( );
+// Specification B2 - Add more rooms
+void room6D ( );
+
+
+int main ( )
+
+{
+
+		string name;
+		int riddle, weapon, exitDoor;
+		char move, playAgain, look, detail;
+		
+	programGreeting ( ); //Call the programGreeting function	
+		
+	// Specification C2 - Player Name
+	cout << "\nHello, gamer, what is your name?" << endl;
+	getline(cin, name); //necessary so the program can read spaces
+	cout << "\n";
+	cout << "Welcome, " << name << ", it’s nice to meet you." << endl;
+
+
+//Specification A1 - Game Loop
+do
+{
+
+	gameDetail ( ); //inform the user how to play the game
+
+	// Specification C5 - Detailed Look
+	cout << "Before we start, would you like to learn more about our monsters and" << endl;
+	cout << "their weaknesses? If so, enter ‘L’, if not enter any other letter on the keyboard."<< endl;
+	cin >> look;
+	look = toupper(look);
+	
+		// Specification A2 - Discription of the various monsters utilized in the game and their weaknesses
+		if (look == 'L')
+		{
+			cout << "Monster: Vampire / Weakness: Wood in the heart" << endl;
+			cout << "Monster: Werewolf / Weakness: Silver in the heart" << endl;
+			cout << "Monster: Zombie / Weakness: Destroy the brain" << endl;
+			cout << "Monster: Mummy/ Weakness: acid" << endl;
+			cout << "Monster: Ghost / Weakness: Bible verses" << endl;
+			// Specification B1 - Add more monsters
+			cout << "Monster: Witch / Weakness: Water " << endl;
+		}
+
+	cout << "\n‘Welcome to the dungeon, Mwahahaha!’, An old, ugly witch cackles." << endl;
+	cout << "The witch smiles widely at you, ‘I will be your guide through each " << endl;
+	cout << "room. In order to enter room 1, you must solve one riddle.’ She " << endl;
+	cout << "laughs maniacally. The witch shoves her death black hair to the side " << endl;
+	cout << "of her shoulders and spiders fly out from her long death locks. " << endl;
+	cout << "\n‘Now deary, I’m tall when I’m young, and I’m short when I’m old. " << endl;
+	cout << "What am I?’ She asks you." << endl;
+	cout << "How shall you reply? Enter 1, 2, or 3 from the following options: " << endl;
+	cout << "1 - A shadow" << endl;
+	cout << "2 - A candle" << endl;
+	cout << "3 - A tree" << endl;
+	cin >> riddle;
+
+		// Specification C3 - Input Validation
+		while (riddle != 1 && riddle != 2 && riddle != 3)
+		{
+			cout << "You did not enter 1, 2 or 3 for your answer! Try again:" << endl;
+			cin >> riddle;
+		}
+		while (riddle != 2)
+		{
+			cout << "Wrong answer! Try again:" << endl; 
+			cin >> riddle;
+		}
+	
+	cout << "\nThe witch cackles once more, ‘Correct, you may now enter room 1’" << endl;
+	cout << "The door to room 1, is to your right." << endl;
+	//Specification A3 - Key Movement Discription (Lets the player know how to move throughout the game)
+	location ( );
+	cout << "Please enter N, S, E, or W to move: " << endl;
+	cin >> move;
+	move = toupper(move);
+		
+		while (move != 'E')
+		{
+			cout << "Wrong direction or wrong key used! Please try again: " << endl;
+			cin >> move;
+			move = toupper(move);
+		}
+	
+	room1 ( ); //call room 1 description/detail to the user
+	//Specification B4 - Add combat
+	cout << "Please enter 1, 2, or 3 once you have chosen your weapon: " << endl;
+	cout << "1 - Garlic cloves and garlic dust." << endl;
+	cout << "2 - Gun equipped with a sterling silver bullet." << endl;
+	cout << "3 - Wooden stake" << endl;
+	cin >> weapon;
+		
+		// Specification C3 - Input Validation
+		while (weapon != 1 && weapon != 2 && weapon != 3)
+		{
+			cout << "You did not enter 1, 2 or 3 for your answer! Try again:" << endl;
+			cin >> weapon;
+		}
+
+	cout << "\n‘So, I hear they call you " << name << ", huh? Sounds like the name " << endl;
+	cout << "of a wimp to me. Anyway, I’m really, really hungry. Don’t worry, kid. " << endl;
+	cout << "The pain will only be excruciating.’ He smirks, lunging towards you.\n" << endl;
+
+	if (weapon == 1)
+	{
+		cout << "\nThe garlic dust & cloves has weakened your opponent slightly," << endl;
+		cout << "however, vampires have begun to build a resistance to garlic " << endl;
+		cout << "over the last few centuries! The vampire has overpowered " << endl;
+		cout << "you and sucked every drop of blood from your veins. You " << endl;
+		cout << "are now dead :(" << endl;
+		cout << "GAME OVER" <<endl;
+		cout << "\nWould you like to play again? Answer ‘y’ for yes and ‘n’ for no\n";
+		cin >> playAgain;
+		playAgain = tolower(playAgain);
+		
+		while (playAgain != 'n' && playAgain != 'y')
+		{
+			cout << "You did not answer ‘y’ or ‘n’ to the previous question. Try again!\n";
+			cin >> playAgain;
+			playAgain = tolower(playAgain);
+		}
+		continue;     //necessary so the program terminates this iteration only
+	}
+	else if (weapon == 2)
+	{
+		cout << "\nYou take the gun and shoot the vampire through his chest " << endl;
+		cout << "with the silver bullet and he falls to the ground. You let out a " << endl;
+		cout << "a sigh of relief, until.... The vampire rises up fully healed from " << endl;
+		cout << "the damage you’ve caused. He lunges at you yet again biting " << endl;
+		cout << "into your neck. You try to shoot him again, but you cannot as " << endl;
+		cout << "you slowly lose consciousness as the vampire drains every " << endl;
+		cout << "last drop of blood from your veins. I’m sorry, but you’ve " << endl;
+		cout << "forgotten that vampires are not weakened by silver bullets." << endl;
+		cout << "Now, you are dead :(" << endl;
+		cout << "GAME OVER" << endl;
+		cout << "\nWould you like to play again? Answer ‘y’ for yes and ‘n’ for no\n";
+		cin >> playAgain;
+		playAgain = tolower(playAgain);
+		
+		while (playAgain != 'n' && playAgain != 'y')
+		{
+			cout << "You did not answer ‘y’ or ‘n’ to the previous question. Try again!\n";
+			cin >> playAgain;
+			playAgain = tolower(playAgain);
+		}
+		continue;   //necessary so the program terminates this iteration only
+	}
+	else if (weapon == 3)
+	{
+		cout << "\nYou take the wooden stake and lunge towards your opponent." << endl;
+		cout << "The vampire tries to bite your neck with his long, venomous" << endl;
+		cout << "fangs, yet you are too fast for him. Without hesitation, you" << endl;
+		cout << "plunge the stake deep into the monster’s cold heart. He " << endl;
+		cout << "whimpers in pain as you watch his skin and body crumble" << endl;
+		cout << "to ash. You have successfully killed the vampire!" << endl;
+		cout << "\n";
+		cout << "Suddenly, the green-skinned witch appears flaunting her" << endl;
+		cout << "crooked nose at you." << endl;
+		cout << "\n’Well well well’, she shakes her head, ‘I really did like him.’" << endl;
+		cout << "The old witch looks down upon the dead vampire in pity." << endl;
+		cout << "‘Now, deary, if you want enter room 2, you must answer " << endl;
+		cout << "my next riddle.’ The witch growls." << endl;
+		cout << "\n";
+		cout << "‘When you have me more, you can see only less. What Am I?’" << endl;
+		cout << "How shall you reply. Enter, 1, 2, or 3 for your answer:" << endl;
+		cout << "1 - Fog" << endl;
+		cout << "2 - A blanket" << endl;
+		cout << "3 - Darkness" << endl;
+		cin >> riddle;
+		
+		// Specification C3 - Input Validation
+		while (riddle != 1 && riddle != 2 && riddle != 3)
+		{
+			cout << "You did not enter 1, 2 or 3 for your answer! Try again:" << endl;
+			cin >> riddle;
+		}
+		while (riddle != 3)
+		{
+			cout << "Wrong answer! Try again:" << endl; 
+			cin >> riddle;
+		}
+	}
+	
+	cout << "\nThe witch cackles, ‘Correct, you may now enter room 2’" << endl;
+	cout << "The door to room 2 is in front of you." << endl;
+	location ( );
+	cout << "Please enter N, S, E, or W to move: " << endl;
+	cin >> move;
+	move = toupper(move);
+
+		while (move != 'N')
+		{
+			cout << "Wrong direction or wrong key used! Please try again: " << endl;
+			cin >> move;
+			move = toupper(move);
+		}
+		
+	cout << "Smooth moves, " << name << "!" << endl;
+	room2 ( ); //call room 2 description/detail to the user
+	//Specification B4 - Add combat
+	cout << "Please enter 1, 2, or 3 once you have chosen your weapon: " << endl;
+	cout << "1 - Pitch fork" << endl;
+	cout << "2 - Gun equipped with a sterling silver bullet." << endl;
+	cout << "3 - Fire/Flame Gun" << endl;
+	cin >> weapon;
+		
+		// Specification C3 - Input Validation
+		while (weapon != 1 && weapon != 2 && weapon != 3)
+		{
+			cout << "You did not enter 1, 2 or 3 for your answer! Try again:" << endl;
+			cin >> weapon;
+		}
+
+	if (weapon == 1)
+	{
+		cout << "\nAs you grab the pitch fork and point it towards the beast, " << endl;
+		cout << "the werewolf snaps your weapon into two peices with one " << endl;
+		cout << "powerful swap from his paw. He continues to maul you to death. " << endl;
+		cout << "GAME OVER" << endl;
+		cout << "\nWould you like to play again? Answer ‘y’ for yes and ‘n’ for no\n";
+		cin >> playAgain;
+		playAgain = tolower(playAgain);
+		
+			while (playAgain != 'n' && playAgain != 'y')
+			{
+				cout << "You did not answer ‘y’ or ‘n’ to the previous question. Try again!\n";
+				cin >> playAgain;
+				playAgain = tolower(playAgain);
+			}
+		continue;   //necessary so the program terminates this iteration only
+	}
+	else if (weapon == 2)
+	{
+		cout << "\nYou grab hold of the gun and shoot the beast in his heart with " << endl;
+		cout << "the sterling, silver bullet. Silver is deadly once entered into the " << endl;
+		cout << "heart of a werewolf. Thus, you watch as the beast turns back " << endl;
+		cout << "into a man with a pool of his blood flooding beneath him." << endl;
+		cout << "Great work, " << name << ". You’ve defeated the werewolf!" << endl;
+		cout << "\n";
+		cout << "The witch reappears shining her yellow teeth at you." << endl;
+		cout << "‘Well, he was too reclusive to miss’, the witch smirks." << endl;
+		cout << "‘Now, deary, if you want to enter room 3, you must answer " << endl;
+		cout << "my next riddle.’" << endl;
+		cout << "\n";
+		cout << "‘I don't have eyes, but once I did see. Once I had thoughts, " << endl;
+		cout << "but now I'm white and empty. Who am I?’" << endl;
+		cout << "How shall you reply. Enter, 1, 2, or 3 for your answer:" << endl;
+		cout << "1 - A skull" << endl;
+		cout << "2 - A ghost" << endl;
+		cout << "3 - A panda" << endl;
+		cin >> riddle;
+		
+			// Specification C3 - Input Validation
+			while (riddle != 1 && riddle != 2 && riddle != 3)
+			{
+				cout << "You did not enter 1, 2 or 3 for your answer! Try again:" << endl;
+				cin >> riddle;
+			}
+			while (riddle != 1)
+			{
+				cout << "Wrong answer! Try again:" << endl; 
+				cin >> riddle;
+			}
+	}
+	else if (weapon == 3)
+	{
+		cout << "\nYou attempt the burn the beast with your flame gun, however, " << endl;
+		cout << "the fire flames have no effect on him. The werewolf continues " << endl;
+		cout << "to maul you to death." << endl; 
+		cout << "GAME OVER" << endl;
+		cout << "\nWould you like to play again? Answer ‘y’ for yes and ‘n’ for no\n";
+		cin >> playAgain;
+		playAgain = tolower(playAgain);
+		
+			while (playAgain != 'n' && playAgain != 'y')
+			{
+				cout << "You did not answer ‘y’ or ‘n’ to the previous question. Try again!\n";
+				cin >> playAgain;
+				playAgain = tolower(playAgain);
+			}
+		continue;    //necessary so the program terminates this iteration only
+	}
+	
+	cout << "\nThe witch cackles, ‘Correct, you may now enter room 3’" << endl;
+	cout << "The door to room 3 is to your left." << endl;
+	location ( );
+	cout << "Please enter N, S, E, or W to move: " << endl;
+	cin >> move;
+	move = toupper(move);
+	
+		while (move != 'W')
+		{
+			cout << "Wrong direction or wrong key used! Please try again: " << endl;
+			cin >> move;
+			move = toupper(move);
+		}
+
+	room3 ( ); //call room 3 description/detail to the user
+	//Specification B4 - Add combat
+	cout << "Please enter 1, 2, or 3 once you have chosen your weapon: " << endl;
+	cout << "1 - An axe" << endl;
+	cout << "2 - A pitch fork" << endl;
+	cout << "3 - A flame/fire gun" << endl;
+	cin >> weapon;
+		
+		// Specification C3 - Input Validation
+		while (weapon != 1 && weapon != 2 && weapon != 3)
+		{
+			cout << "You did not enter 1, 2 or 3 for your answer! Try again:" << endl;
+			cin >> weapon;
+		}
+	
+	if (weapon == 1)
+	{
+		cout << "\nYou take the axe and smash it into the zombie’s head. This impact " << endl;
+		cout << "destroys the zombie's brain. You have successfully defeated the " << endl;
+		cout << "zombie! Exellect work, " << name << "!" << endl;
+		cout << "\n";
+		cout << "The witch reappears shining her yellow teeth at you." << endl;
+		cout << "‘Well, he was too stupid to morn’, the witch cackles." << endl;
+		cout << "‘Now, deary, if you want to enter room 4, you must answer " << endl;
+		cout << "my next riddle.’" << endl;
+		cout << "\n";
+		cout << "‘I am an odd number. Take away a letter and I become even. What number am I?’" << endl;
+		cout << "How shall you reply. Enter, 1, 2, or 3 for your answer:" << endl;
+		cout << "1 - Nine" << endl;
+		cout << "2 - Seven" << endl;
+		cout << "3 - Five" << endl;
+		cin >> riddle;
+		
+			// Specification C3 - Input Validation
+			while (riddle != 1 && riddle != 2 && riddle != 3)
+			{
+				cout << "You did not enter 1, 2 or 3 for your answer! Try again:" << endl;
+				cin >> riddle;
+			}
+			while (riddle != 2)
+			{
+				cout << "Wrong answer! Try again:" << endl;
+				cin >> riddle;
+			}
+	}
+	else if (weapon == 2)
+	{
+		cout << "\nYou try to destroy the zombie’s brain with your pitch fork, although, " << endl;
+		cout << "the pitch fork is far too weak and dull to pierce through the zombie’s" << endl;
+		cout << "skull. The zombie attacks you and munches on your brain as you " << endl;
+		cout << "die a painful death..." << endl;
+		cout << "GAME OVER" << endl;
+		cout << "\nWould you like to play again? Answer ‘y’ for yes and ‘n’ for no\n";
+		cin >> playAgain;
+		playAgain = tolower(playAgain);
+			
+			while (playAgain != 'n' && playAgain != 'y')
+			{
+				cout << "You did not answer ‘y’ or ‘n’ to the previous question. Try again!\n";
+				cin >> playAgain;
+				playAgain = tolower(playAgain);
+			}
+		continue;  //necessary so the program terminates this iteration only
+	}
+	else if (weapon == 3)
+	{
+		cout << "\nThe flame gun does nothing to harm the zombie. He feels no pain nor" << endl;
+		cout << "does he slow down as he attacks you and begins to munch on" << endl;
+		cout << "your brain and kills you." << endl;
+		cout << "GAME OVER" << endl;
+		cout << "\nWould you like to play again? Answer ‘y’ for yes and ‘n’ for no\n";
+		cin >> playAgain;
+		playAgain = tolower(playAgain);
+		
+			while (playAgain != 'n' && playAgain != 'y')
+			{
+				cout << "You did not answer ‘y’ or ‘n’ to the previous question. Try again!\n";
+				cin >> playAgain;
+				playAgain = tolower(playAgain);
+			}
+		continue;     //necessary so the program terminates this iteration only
+	}
+	
+	cout << "\nThe witch cackles, ‘Correct, you may now enter room 4’" << endl;
+	cout << "The door to room 4 is behind you." << endl;
+	location ( );
+	cout << "Please enter N, S, E, or W to move: " << endl;
+	cin >> move;
+	move = toupper(move);
+
+		while (move != 'S')
+		{
+			cout << "Wrong direction or wrong key used! Please try again: " << endl;
+			cin >> move;
+			move = toupper(move);
+		}
+		
+	room4 ( ); //call room 4 description/detail to the user
+	//Specification B4 - Add combat
+	cout << "Please enter 1, 2, or 3 once you have chosen your weapon: " << endl;
+	cout << "1 - A Sword" << endl;
+	cout << "2 - A Flam/Fire gun" << endl;
+	cout << "3 - A Bible & Cross" << endl;
+	cin >> weapon;
+	
+	// Specification C3 - Input Validation
+	while (weapon != 1 && weapon != 2 && weapon != 3)
+	{
+		cout << "You did not enter 1, 2 or 3 for your answer! Try again:" << endl;
+		cin >> weapon;
+	}
+	
+	if (weapon == 1)
+	{
+		cout << "\nYour sword has no effect on the evil spirit. She throws her knives " << endl;
+		cout << "at you which leads to our ultimate demise." << endl;
+		cout << "GAME OVER" << endl;
+		cout << "\nWould you like to play again? Answer ‘y’ for yes and ‘n’ for no\n";
+		cin >> playAgain;
+		playAgain = tolower(playAgain);
+		
+			while (playAgain != 'n' && playAgain != 'y')
+			{
+				cout << "You did not answer ‘y’ or ‘n’ to the previous question. Try again!\n";
+				cin >> playAgain;
+				playAgain = tolower(playAgain);
+			}
+		continue; //necessary so the program terminates this iteration only
+	}
+	else if (weapon == 2)
+	{
+		cout << "\nYour flame gun has no effect on the evil spirit. She launches her " << endl;
+		cout << "knives at you which ultimately leads to your death." << endl;
+		cout << "GAME OVER" << endl;
+		cout << "\nWould you like to play again? Answer ‘y’ for yes and ‘n’ for no\n";
+		cin >> playAgain;
+		playAgain = tolower(playAgain);
+		
+			while (playAgain != 'n' && playAgain != 'y')
+			{
+				cout << "You did not answer ‘y’ or ‘n’ to the previous question. Try again!\n";
+				cin >> playAgain;
+				playAgain = tolower(playAgain);
+			}
+		continue; //necessary so the program terminates this iteration only
+	}
+	else if (weapon == 3)
+	{
+		cout << "\nYou begin to recite verses from the holy Bible while flaunting a " << endl;
+		cout << "the cross in front of the spirit. The ghost screams in pain and " << endl;
+		cout << "anguish. You have officially defeated the ghost." << endl;
+		cout << "Nice work, " << name << ", you’ve cleansed the room!" << endl;
+		cout << "\n";
+		cout << "The witch reappears with a dead look in her eyes." << endl;
+		cout << "‘She will be missed’ the witch hisses at you." << endl;
+		cout << "‘If you want to enter room 5, you must answer " << endl;
+		cout << "my next riddle.’" << endl;
+		cout << "\n";
+		cout << "‘The person who built it sold it. The person who bought it never used it." << endl;
+		cout << "The person who used it never saw it. What is it?’" << endl;
+		cout << "How shall you reply. Enter, 1, 2, or 3 for your answer:" << endl;
+		cout << "1 - A boat" << endl;
+		cout << "2 - A skeleton" << endl;
+		cout << "3 - A coffin" << endl;
+		cin >> riddle;
+		
+			// Specification C3 - Input Validation
+			while (riddle != 1 && riddle != 2 && riddle != 3)
+			{
+				cout << "You did not enter 1, 2 or 3 for your answer! Try again:" << endl;
+				cin >> riddle;
+			}
+			while (riddle != 3)
+			{
+				cout << "Wrong answer! Try again:" << endl; 
+				cin >> riddle;
+			}
+	}
+
+	cout << "\n‘Correct, you may now enter room 5’" << endl;
+	cout << "The door to room 5 is to the right of you." << endl;
+	location ( );
+	cout << "Please enter N, S, E, or W to move: " << endl;
+	cin >> move;
+	move = toupper(move);
+	
+		while (move != 'E')
+		{
+			cout << "Wrong direction or wrong key used! Please try again: " << endl;
+			cin >> move;
+			move = toupper(move);
+		}
+	
+	room5 ( ); //call room 5 description/detail to the user
+	//Specification B4 - Add combat
+	cout << "Please enter 1 or 2 once you have chosen your weapon: " << endl;
+	cout << "1 - A Sword" << endl;
+	cout << "2 - A bucket of concentrated hydrochloric acid" << endl;
+	cin >> weapon;
+	// Specification C3 - Input Validation
+	
+		while (weapon != 1 && weapon != 2)
+		{
+			cout << "You did not enter 1 or 2 for your answer! Try again:" << endl;
+			cin >> weapon;
+		}
+	
+	if (weapon == 1)
+	{
+		cout << "\nYou successfully use the sword chop off the mummy’s hand, however, " << endl;
+		cout << "You are no match for the mummy with a sword alone. The mummy " << endl;
+		cout << "hypnotizes you with its red beaming eyes and kills you in murderous rage!" << endl;
+		cout << "GAME OVER" << endl;
+		cout << "\nWould you like to play again? Answer ‘y’ for yes and ‘n’ for no\n";
+		cin >> playAgain;
+		playAgain = tolower(playAgain);
+		
+			while (playAgain != 'n' && playAgain != 'y')
+			{
+				cout << "You did not answer ‘y’ or ‘n’ to the previous question. Try again!\n";
+				cin >> playAgain;
+				playAgain = tolower(playAgain);
+			}
+		continue;  //necessary so the program terminates this iteration only
+	}
+	else if (weapon == 2)
+	{
+		cout << "\nSmart thinking, " << name << "! You have successfully killed the " << endl;
+		cout << "mummy with your vat of super-concentrated hydrochloric acid." << endl;
+		cout << "The acid was able to dissolve the mummy’s body once you heroically" << endl;
+		cout << "dumped the acid on it." << endl; 
+		cout << "\n";
+		cout << "The witch magically asserts herself in your presence." << endl;
+		cout << "‘Bye bye dummy, mummy.’ She chuckles." << endl;
+		cout << "‘If you want to enter room 6, you must answer " << endl;
+		cout << "my next riddle.’" << endl;
+		cout << "\n";
+		cout << "‘What is always in front of you but can’t be seen?’" << endl;
+		cout << "How shall you reply. Enter, 1, 2, or 3 for your answer:" << endl;
+		cout << "1 - The Future" << endl;
+		cout << "2 - Your nose" << endl;
+		cout << "3 - Air" << endl;
+		cin >> riddle;
+		
+			// Specification C3 - Input Validation
+			while (riddle != 1 && riddle != 2 && riddle != 3)
+			{
+				cout << "You did not enter 1, 2 or 3 for your answer! Try again:" << endl;
+				cin >> riddle;
+			}
+			while (riddle != 1)
+			{
+				cout << "Wrong answer! Try again:" << endl;
+				cin >> riddle;
+			}
+	}
+	
+	cout << "\n‘Correct, you may now enter room 6’" << endl;
+	cout << "The door to room 6 is behind you." << endl;
+	location ( );
+	cout << "Please enter N, S, E, or W to move: " << endl;
+	cin >> move;
+	move = toupper(move);
+	
+		while (move != 'S')
+		{
+			cout << "Wrong direction or wrong key used! Please try again: " << endl;
+			cin >> move;
+			move = toupper(move);
+		}
+		
+	// Specification B1 - Add more monsters
+	// Specification B2 - Add more rooms
+	room6 ( ); //call room 6 description/detail to the user
+	//Specification B4 - Add combat
+	cout << "Please enter 1 or 2 once you have chosen your weapon: " << endl;
+	cout << "1 - A Sword" << endl;
+	cout << "2 - A bucket of water" << endl;
+	cin >> weapon;
+	
+		// Specification C3 - Input Validation
+		while (weapon != 1 && weapon != 2)
+		{
+			cout << "You did not enter 1 or 2 for your answer! Try again:" << endl;
+			cin >> weapon;
+		}
+		
+	if (weapon == 1)
+	{
+		cout << "\nYour sword was no match for the witch. She melted it as soon as" << endl;
+		cout << "you held it in your hands. This resulted in massive third-degree " << endl;
+		cout << "burns on your right arm. Because you were too weak to fight, the witch" << endl;
+		cout << "electrocuted you to death." << endl;
+		cout << "GAME OVER" << endl;
+		cout << "\nWould you like to play again? Answer ‘y’ for yes and ‘n’ for no\n";
+		cin >> playAgain;
+		playAgain = tolower(playAgain);
+		
+		while (playAgain != 'n' && playAgain != 'y')
+		{
+			cout << "You did not answer ‘y’ or ‘n’ to the previous question. Try again!\n";
+			cin >> playAgain;
+			playAgain = tolower(playAgain);
+		}
+	continue;   //necessary so the program terminates this iteration only
+	}
+	//Specification B3 - Add treasure - the treasure is the princess
+	else if (weapon == 2)
+	{
+		cout << "\nSmart thinking, " << name << "! You have successfully killed the " << endl;
+		cout << "the witch. Once she has died, you run over to the key and free" << endl;
+		cout << "the princess from her shackles. Now that you are both free and " << endl;
+		cout << "and safe, you must find the three exit doors. Understandably, you " << endl; 
+		cout << "were very stressed while fighting the various monsters in the six" << endl; 
+		cout << "rooms you encountered. You most likely did not notice that only one" << endl;
+		cout << "of those rooms contained the three exit doors from the dungeon. Now " << endl; 
+		cout << "you must look around the dungeon rooms to find the three exit doors." << endl;
+		cout << "You and the princess have left room six into a dungeon hall." << endl; 
+		cout << "You are surrounded by six doors. Each leads to different room." << endl;
+	}
+		
+		
+	do
+	{
+		cout << "\nHere is a layout of your surroundings:" << endl; 
+		cout << "Room 1 is to your right." << endl; 
+		cout << "Room 2 is to your left." << endl; 
+		cout << "Room 3 is in front of you." << endl; 
+		cout << "Room 4 is behind you." << endl; 
+		cout << "Room 5 is northeast to you" << endl; 
+		cout << "Room 6 is northwest to you" << endl;
+		cout << "\nThere are 6 different keys you can use to move around as follows:" << endl; 
+			location2 ( ); 
+		cout << "Where would you like to look? Enter N, S, E, W, X, or Y to move." << endl; 
+		cin >> move; 
+		move = toupper(move); 
+		
+			while (move != 'N' && move != 'S' && move != 'E' && move != 'W' && move != 'X' && move != 'Y')
+			{
+				cout << "You did not enter N, S, E, W, X, or Y! Please try again:";
+				cin >> move; 
+				move = toupper(move); 
+			} 
+		
+		if (move == 'N')
+		{
+			cout << "You have entered Room 3. Would you like to read a description on it?" << endl;
+			cout << "Enter 'y' for yes and 'n' for no." << endl; 
+			cin >> detail; 
+			detail = tolower(detail);
+				
+				while (detail != 'y' && detail != 'n')
+				{
+					cout << "You did not enter 'y' or 'n'! Please try again:";
+					cin >> detail; 
+					detail = tolower(detail);
+				}
+			
+				if (detail == 'y')
+				{
+					// Specification C5 - Detailed Look
+					room3D ( ); 
+				}
+			
+			cout << "\nUnfortunately there are no exit rooms in room 3. You step outside of" << endl; 
+			cout << "room 3 into the dungeon hall to continue your search." << endl; 
+		}
+		else if (move == 'S')
+		{
+			cout << "You have entered Room 4. Would you like to read a description on it?" << endl;
+			cout << "Enter 'y' for yes and 'n' for no." << endl; 
+			cin >> detail; 
+			detail = tolower(detail);
+				
+				while (detail != 'y' && detail != 'n')
+				{
+					cout << "You did not enter 'y' or 'n'! Please try again:";
+					cin >> detail; 
+					detail = tolower(detail);
+				}
+			
+				if (detail == 'y')
+				{
+					// Specification C5 - Detailed Look
+					room4D ( ); 
+				}
+			
+			cout << "\nUnfortunately there are no exit rooms in room 4. You step outside of" << endl; 
+			cout << "room 4 into the dungeon hall to continue your search." << endl; 
+		}
+		else if (move == 'W')
+		{
+			cout << "You have entered Room 2. Would you like to read a description on it?" << endl;
+			cout << "Enter 'y' for yes and 'n' for no." << endl; 
+			cin >> detail; 
+			detail = tolower(detail);
+				
+				while (detail != 'y' && detail != 'n')
+				{
+					cout << "You did not enter 'y' or 'n'! Please try again:";
+					cin >> detail; 
+					detail = tolower(detail);
+				}
+			
+				if (detail == 'y')
+				{
+					// Specification C5 - Detailed Look
+					room2D ( ); 
+				}
+			
+			cout << "\nUnfortunately there are no exit rooms in room 2. You step outside of" << endl; 
+			cout << "room 2 into the dungeon hall to continue your search." << endl; 
+		}
+		else if (move == 'X')
+		{
+			cout << "You have entered Room 5. Would you like to read a description on it?" << endl;
+			cout << "Enter 'y' for yes and 'n' for no." << endl; 
+			cin >> detail; 
+			detail = tolower(detail);
+				
+				while (detail != 'y' && detail != 'n')
+				{
+					cout << "You did not enter 'y' or 'n'! Please try again:";
+					cin >> detail; 
+					detail = tolower(detail);
+				}
+			
+				if (detail == 'y')
+				{
+					// Specification C5 - Detailed Look
+					room5D ( ); 
+				}
+			
+			cout << "\nUnfortunately there are no exit rooms in room 5. You step outside of" << endl; 
+			cout << "room 5 into the dungeon hall to continue your search." << endl; 
+		}
+		else if (move == 'Y')
+		{
+			cout << "You have entered Room 6. Would you like to read a description on it?" << endl;
+			cout << "Enter 'y' for yes and 'n' for no." << endl; 
+			cin >> detail; 
+			detail = tolower(detail);
+				
+				while (detail != 'y' && detail != 'n')
+				{
+					cout << "You did not enter 'y' or 'n'! Please try again:";
+					cin >> detail; 
+					detail = tolower(detail);
+				}
+			
+				if (detail == 'y')
+				{
+					// Specification C5 - Detailed Look
+					room6D ( ); 
+				}
+			
+			cout << "\nUnfortunately there are no exit rooms in room 6. You step outside of" << endl; 
+			cout << "room 6 into the dungeon hall to continue your search." << endl; 
+		}
+		else if (move == 'E')
+		{
+			cout << "You have entered Room 1. Would you like to read a description on it?" << endl;
+			cout << "Enter 'y' for yes and 'n' for no." << endl; 
+			cin >> detail; 
+			detail = tolower(detail);
+				
+				while (detail != 'y' && detail != 'n')
+				{
+					cout << "You did not enter 'y' or 'n'! Please try again:";
+					cin >> detail; 
+					detail = tolower(detail);
+				}
+			
+				if (detail == 'y')
+				{
+					// Specification C5 - Detailed Look
+					room1D ( ); 
+				}
+			
+			cout << "\nGreat job, " << name << "! You have entered the right room that contains" << endl;
+			cout << "the three exit doors. It is time for you and the princess to safely leave" << endl;
+			cout << "the dungeon." << endl;
+		}
+	
+	}while (move != 'E');
+		
+		
+		cout << "Together, you and the princess both walk towards" << endl;
+		cout << "a wall containing three exits doors. Each of them are colored differently" << endl;
+		cout << "The first door is blue, the second door is red, and the third door is green." << endl;
+		cout << "Enter the 1, 2, or 3 for the door you would like to exit through:" << endl;
+		cout << "1 - Blue door" << endl;
+		cout << "2 - Red door" << endl;
+		cout << "3 - Green door" << endl;
+		cout << "\nRemember what you learned in the beginning of the game! Only ONE" << endl;
+		cout << "door will lead you and the princess to safety. The other two are" << endl;
+		cout << "booby-trapped and will result in your ultimate demise. Choose wisely." << endl;
+		cin >> exitDoor;
+		
+			if (exitDoor == 2)
+			{
+				cout << "CONGRATULATIONS! You’ve chosen the right door and have" << endl;
+				cout << "made it out of the dungeon safely with princess Emmy." << endl;
+				cout << "YOU WIN!!!" << endl;
+			}
+			else
+			{
+				cout << "Oh no, you choose the wrong door. Once you opened the" << endl;
+				cout << "door, knives shot out at you and the princess resulting" << endl;
+				cout << "in both of your deaths :(" << endl;
+				cout << "GAME OVER" << endl;
+			}
+	
+	cout << "\nWould you like to play again? Answer ‘y’ for yes and ‘n’ for no\n";
+	cin >> playAgain;
+	playAgain = tolower(playAgain);
+	
+		while (playAgain != 'n' && playAgain != 'y')
+		{
+			cout << "You did not answer ‘y’ or ‘n’ to the previous question. Try again!\n";
+			cin >> playAgain;
+			playAgain = tolower(playAgain);
+		}
+	
+}while (playAgain == 'y');
+	
+	return (0);
+	
+}
+
+void programGreeting ( )
+{
+	cout << "Welcome to the Dungeon and Monsters game! Choose each decision " << endl;
+	cout << "wisely. For if you do not, you may die. Strive to survive and have fun:)" << endl;
+	cout << "\n"; // for blank space
+	cout << "My name is Juliet Wright\n";
+	cout << "\n"; // for blank space
+	cout << "Assignment due date: May 19, 2021\n";
+	cout << "Now we shall step into the program.\n";
+	cout << "----------------------------------------------------------------------------------\n";
+}
+
+//Specification B3 - Add treasure - the treasure is the princess
+void gameDetail ( )
+{
+	cout << "\nYou are about to encounter a very dangerous and very scary dungeon. Your" << endl;
+	cout << "goal is to rescue princess Emmy. Within this dungeon there are six rooms that you must go" << endl;
+	cout << "through. Five of these rooms contain dangerous, blood-thirsty, murderous monsters. Each room" << endl;
+	cout << "is different and each monster is different. You will need to solve riddles to enter each new room" << endl;
+	cout << "once you have defeated each monster in each room. Once you reach the sixth room, you will" << endl;
+	cout << "find princess Emmy and figure out how to free her from the shackles that bind her to her cell." << endl;
+	cout << "Once you have completed this task, you will be confronted with three exit doors. Only one door" << endl; 
+	cout << "will lead you out of the dungeon safely. You must pick the color door with the longest wavelength." << endl;
+	cout << "You will not be reminded of this again, so please remember this knowledge. Now, you may enter" << endl;
+	cout << "the dark and mysterious dungeon. Watch your back! Most importantly, have fun!" << endl;
+}
+
+//Specification A3 - Key Movement Discription (Lets the player know how to move throughout the game)
+void location ( )
+{
+	cout << "You have four keys that direct location: " << endl;
+	cout << "N - forward" << endl;
+	cout << "S - backward" << endl;
+	cout << "E - right" << endl;
+	cout << "W - left" << endl;
+}
+
+//Specification A3 - Key Movement Discription (Lets the player know how to move throughout the game)
+void location2 ( )
+{
+	cout << "You have four keys that direct location: " << endl;
+	cout << "N - forward" << endl;
+	cout << "S - backward" << endl;
+	cout << "E - right" << endl;
+	cout << "W - left" << endl;
+	cout << "X - northeast" << endl; 
+	cout << "Y - northwest" << endl; 
+}
+
+// Specification C1 - Five Rooms
+// Specification C4 – Abbreviated Room Description
+void room1 ( )
+{
+	cout << "\nLocation: Room 1" << endl;
+	cout << "----------------------------------------------------------------------------------\n";
+	cout << "\nNice job! You have officially entered room 1. You begin to take a " << endl;
+	cout << "look around the rat infested space. You find blood splattered on the " << endl;
+	cout << "walls and hear a faint humming in the corner. What could that b-..." << endl;
+	cout << "\nLOOK OUT!!!" << endl;
+	cout << "Right in front of you, a vampire slithers forward. He shuffles towards " << endl;
+	cout << "you as if he is limping. Could his knee be faulty? You wonder..." << endl;
+	cout << "Not another thought slips in your mind as you begin to hear his " << endl;
+	cout << "his voice croak. He is about to speak." << endl;
+	cout << "‘What could you be doing in my little home? Or are you just my " << endl;
+	cout << "dinner being freshly delivered to my door?’ You step back into a " << endl;
+	cout << "stable pose ready for combat." << endl;
+	cout << "‘I’m not afraid of you!’ You hiss at the vampire. The vampire is pale " << endl;
+	cout << "white from lack of blood consumption. You need to defeat him!" << endl;
+	cout << "In your bag of tools you can choose from three of the following " << endl;
+	cout << "weapons." << endl;
+}
+
+// Specification C5 - Detailed Look
+void room1D ( )
+{
+	cout << "\nLocation: Room 1" << endl;
+	cout << "----------------------------------------------------------------------------------\n";
+	cout << "Room 1 contains dead and live rats previously eaten by the vampire you killed." << endl; 
+	cout << "The room contains blood splattered on the walls and a pile of ash on the floor." << endl;
+	cout << "This pile of ash was at one point the living vampire you killed." << endl;
+}
+
+// Specification C4 – Abbreviated Room Description
+void room2 ( )
+{
+	cout << "\nLocation: Room 2" << endl;
+	cout << "----------------------------------------------------------------------------------\n";
+	cout << "\nYou are now in room 2. Something is weird here. Something feels off. " << endl;
+	cout << "This room is covered in brown, matted hair. Long, deep scratches cover " << endl;
+	cout << "the walls. You begin to feel the hairs on the back of your neck rise in fear. Only then " << endl;
+	cout << "do you hear a deep, insidious growling from behind you. Slowly, you " << endl;
+	cout << "peer over your shoulder and step back once you see him. A large man " << endl;
+	cout << "stands before you. You’ve never heard a man growl like that before. " << endl;
+	cout << "Suddenly, you realize who you are facing...a werewolf!" << endl;
+	cout << "‘Let’s get this over with already.’ The werewolf howls and begins to turn " << endl;
+	cout << "into a hideous beast before your eyes. You do not have a lot of time." << endl;
+	cout << "You must select your weapon now!\n" << endl;
+}
+
+// Specification C5 - Detailed Look
+void room2D ( )
+{
+	cout << "\nLocation: Room 2" << endl;
+	cout << "----------------------------------------------------------------------------------\n";
+	cout << "Room 2 is filled with brown, matted hair. There are large, deep scratched on all four" << endl; 
+	cout << "walls in the room. A dead werewolf lays over a pool of his blood in the right corner." << endl; 
+	cout << "The room is spacious and dark." << endl;
+}
+
+// Specification C4 – Abbreviated Room Description
+void room3 ( )
+{
+	cout << "\nLocation: Room 3" << endl;
+	cout << "----------------------------------------------------------------------------------\n";
+	cout << "You step into an oddly, spacious room. You find flecks of dead flesh all over " << endl;
+	cout << "the floor and walls. What could all this mean? Suddenly, you are confronted " << endl;
+	cout << "a walking corpse-like creature stepping slowly towards you. It’s a zombie!"<< endl;
+	cout << "‘BRAAINNNSS’, the zombie mumbles. You are running out of time. You " << endl;
+	cout << "need to select a weapon now! The zombie is inching closer and closer!" << endl;
+}
+
+// Specification C5 - Detailed Look
+void room3D ( )
+{
+	cout << "\nLocation: Room 3" << endl;
+	cout << "----------------------------------------------------------------------------------\n";
+	cout << "Room 3 is quite large, yet daunting. Dead flesh and bone lays all around the floor." << endl; 
+	cout << "A dead zombie lays in the middle of the floor with his head bashed open." << endl;
+}
+
+// Specification C4 – Abbreviated Room Description
+void room4 ( )
+{
+	cout << "\nLocation: Room 4" << endl;
+	cout << "----------------------------------------------------------------------------------\n";
+	cout << "You step into room 4 cautiously. What could be lurking within the dark corners" << endl;
+	cout << "of this room? You place each step more quietly than the next as if you are" << endl;
+	cout << "walking around eggshells. Finally you hear, ‘Oooooou’, and onces again, " << endl;
+	cout << "‘Oooooou’, you see a faint foggy shadow of a woman. You are standing " << endl;
+	cout << "right before a ghost, but how do you kill what is already dead? Oh, no!!" << endl;
+	cout << "The poltergeist has begun to levitate a dozen knives all aimed at you." << endl;
+	cout << "Her dead black eyes show no kindness. You must pick a weapon now!" << endl;
+}
+
+// Specification C5 - Detailed Look
+void room4D ( )
+{
+	cout << "\nLocation: Room 4" << endl;
+	cout << "----------------------------------------------------------------------------------\n";
+	cout << "Room 4 provides an erry mood to the soul. The space is quant and empty. The room" << endl; 
+	cout << "is very, very quite. So quite, that you can almost here the wispers left from the" << endl; 
+	cout << "ghost that once occupied that small space. Every spec of the room is clean and empty." << endl;
+}
+
+// Specification C4 – Abbreviated Room Description
+void room5 ( )
+{
+	cout << "\nLocation: Room 5" << endl;
+	cout << "----------------------------------------------------------------------------------\n";
+	cout << "You have now entered room 5. The room feels somewhat erry. You begin to" << endl;
+	cout << "feel a cold draft of air. The smell is aboninamal. As if a mix of rotten eggs and" << endl;
+	cout << "rotting meat airs the surrounding perimeter." << endl;
+	cout << "WATCH OUT! Right in front of you lies a man wrapped in cloth." << endl;
+	cout << "You are facing a mummy! The mummy cannot speak for its mouth is " << endl;
+	cout << "covered. You have no more time to sit and wait. You need to pick a " << endl;
+	cout << "weapon now!" << endl;
+}
+
+// Specification C5 - Detailed Look
+void room5D ( )
+{
+	cout << "\nLocation: Room 5" << endl;
+	cout << "----------------------------------------------------------------------------------\n";
+	cout << "Room 5 is filled with an insidious smell of rotting meat and rotten eggs. The remains" << endl; 
+	cout << "of the dead mummy lay before you. He looks like a sludge of fabric and fleshy-bone." << endl; 
+	cout << "The room is small and there are snakes slithering around your feet." << endl; 
+}
+
+// Specification C4 – Abbreviated Room Description
+// Specification B1 - Add more monsters
+// Specification B2 - Add more rooms
+void room6 ( )
+{
+	cout << "\nLocation: Room 6" << endl;
+	cout << "----------------------------------------------------------------------------------\n";
+	cout << "Congratulations! You have officially made it into room 6. At last, you find" << endl;
+	cout << "princess Emmy shackled with chains to the wall of her cell. A piece of fabric" << endl;
+	cout << "is covering her mouth. You need to save her! You take a look around the room." << endl;
+	cout << "Eurika, on the right hand corner of the room, you find a key which you can use" << endl;
+	cout << "to free princess Emmy. As you make your way over to the key, the old and ugly" << endl;
+	cout << "witch magically appears in front of you. She hollers her loud and insidious" << endl;
+	cout << "laughter: ‘Mwhahaha you thought that I would just let you take away the" << endl;
+	cout << "princess? No, no, deary, now you have to deal with the likes of MEEEE!’" << endl;
+	cout << "The witch’s eyes begin to conduct electricity is it begins to appear that she is" << endl;
+	cout << "shooting lighting from her eyes and hands. She levitates off of the ground and" << endl;
+	cout << "prepares to electrocute you! You are running out of time to survive." << endl;
+	cout << "Pick your weapon of choice now!" << endl;
+}
+
+// Specification C5 - Detailed Look
+void room6D ( )
+{
+	cout << "\nLocation: Room 6" << endl;
+	cout << "----------------------------------------------------------------------------------\n";
+	cout << "Room 6 contains a pile of chains from which princess Emmy was once placed in." << endl; 
+	cout << "The floor is wet and slimmy due to the melted witch in the left corner of you." << endl; 
+	cout << "The room is the largest of all six." << endl; 
+}
